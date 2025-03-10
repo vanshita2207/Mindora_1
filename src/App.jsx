@@ -12,10 +12,23 @@ function App() {
     <div>
       <Navbar />
       <Hero />
-      <Services />
-      <Team />
-      <Pricing />
-      <FAQ />
+
+      <div id="services">
+        <Services />
+      </div>
+
+      <div id="team">
+        <Team />
+      </div>
+
+      <div id="pricing">
+        <Pricing />
+      </div>
+
+      <div id="faq">
+        <FAQ />
+      </div>
+
       <Footer />
     </div>
   )

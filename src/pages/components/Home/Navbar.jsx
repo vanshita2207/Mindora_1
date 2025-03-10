@@ -55,10 +55,10 @@ function Navbar() {
           {/* Desktop menu */}
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             <div className="flex space-x-8">
-              {["Home", "Services", "Pricing", "About", "Contact"].map((item) => (
+              {["Home", "Services", "Pricing", "Team", "FAQ"].map((item) => (
                 <motion.a
                   key={item}
-                  href={`/${item.toLowerCase()}`}
+                  href={`#${item.toLowerCase()}`}
                   className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -73,7 +73,7 @@ function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <a
-                href="/login"
+                href="https://basicloginauth.vercel.app/"
                 className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
               >
                 Login
