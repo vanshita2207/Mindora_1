@@ -7,29 +7,38 @@ function Navbar() {
   const menuVariants = {
     closed: {
       opacity: 0,
-      x: "100%",
+      height: 0,
       transition: {
-        duration: 0.3
+        duration: 0.3,
+        when: "afterChildren"
       }
     },
     open: {
       opacity: 1,
-      x: 0,
+      height: "auto",
       transition: {
-        duration: 0.3
+        duration: 0.3,
+        when: "beforeChildren",
+        staggerChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    closed: { x: 20, opacity: 0 },
-    open: i => ({
-      x: 0,
-      opacity: 1,
+    closed: { 
+      opacity: 0,
+      y: -10,
       transition: {
-        delay: i * 0.1
+        duration: 0.2
       }
-    })
+    },
+    open: { 
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.2
+      }
+    }
   };
 
   const scrollToSection = (sectionId) => {
@@ -67,7 +76,7 @@ function Navbar() {
                 <motion.button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -82,7 +91,7 @@ function Navbar() {
             >
               <a
                 href="https://basicloginauth.vercel.app/"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
               >
                 Login
               </a>
@@ -92,12 +101,35 @@ function Navbar() {
           {/* Mobile menu button */}
           <div className="flex items-center sm:hidden">
             <motion.button
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
               onClick={() => setIsOpen(!isOpen)}
               whileTap={{ scale: 0.95 }}
             >
               <span className="sr-only">Open main menu</span>
-              <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'}`}></i>
+              <div className="w-6 h-6 relative">
+                <motion.span
+                  className="absolute h-0.5 w-6 bg-current transform transition-transform duration-300 ease-in-out"
+                  animate={{ 
+                    rotate: isOpen ? 45 : 0,
+                    translateY: isOpen ? 8 : 0
+                  }}
+                />
+                <motion.span
+                  className="absolute h-0.5 w-6 bg-current transform transition-opacity duration-300 ease-in-out"
+                  animate={{ 
+                    opacity: isOpen ? 0 : 1
+                  }}
+                  style={{ top: "50%", transform: "translateY(-50%)" }}
+                />
+                <motion.span
+                  className="absolute h-0.5 w-6 bg-current transform transition-transform duration-300 ease-in-out"
+                  animate={{ 
+                    rotate: isOpen ? -45 : 0,
+                    translateY: isOpen ? -8 : 0
+                  }}
+                  style={{ bottom: 0 }}
+                />
+              </div>
             </motion.button>
           </div>
         </div>
@@ -107,18 +139,18 @@ function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="sm:hidden"
+            className="sm:hidden overflow-hidden bg-white border-t border-gray-200"
             initial="closed"
             animate="open"
             exit="closed"
             variants={menuVariants}
           >
-            <div className="pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-3 space-y-1">
               {["Home", "Services", "Pricing", "Team", "FAQ"].map((item, i) => (
                 <motion.button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50"
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors duration-200"
                   variants={itemVariants}
                   custom={i}
                 >
@@ -128,11 +160,10 @@ function Navbar() {
               <motion.div
                 className="px-3 py-2"
                 variants={itemVariants}
-                custom={5}
               >
                 <a
                   href="https://basicloginauth.vercel.app/"
-                  className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                  className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
                 >
                   Login
                 </a>
