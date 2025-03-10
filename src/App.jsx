@@ -9,26 +9,23 @@ import Footer from './pages/components/Home/Footer'
 
 function App() {
   return (
-    <div>
+    <div className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
-
+      <div id="home">
+        <Hero />
+      </div>
       <div id="services">
         <Services />
       </div>
-
-      <div id="team">
-        <Team />
-      </div>
-
       <div id="pricing">
         <Pricing />
       </div>
-
+      <div id="team">
+        <Team />
+      </div>
       <div id="faq">
         <FAQ />
       </div>
-
       <Footer />
     </div>
   )

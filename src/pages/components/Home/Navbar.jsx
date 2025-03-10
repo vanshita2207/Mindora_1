@@ -32,9 +32,17 @@ function Navbar() {
     })
   };
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsOpen(false); // Close mobile menu after clicking
+  };
+
   return (
     <motion.nav 
-      className="bg-white shadow-lg"
+      className="bg-white shadow-lg fixed w-full z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -46,9 +54,9 @@ function Navbar() {
               className="flex-shrink-0 flex items-center"
               whileHover={{ scale: 1.05 }}
             >
-              <a href="/" className="text-2xl font-bold text-blue-600">
+              <button onClick={() => scrollToSection('home')} className="text-2xl font-bold text-blue-600">
                 Mindora
-              </a>
+              </button>
             </motion.div>
           </div>
 
@@ -56,15 +64,15 @@ function Navbar() {
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             <div className="flex space-x-8">
               {["Home", "Services", "Pricing", "Team", "FAQ"].map((item) => (
-                <motion.a
+                <motion.button
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  onClick={() => scrollToSection(item.toLowerCase())}
                   className="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {item}
-                </motion.a>
+                </motion.button>
               ))}
             </div>
             <motion.div
@@ -106,16 +114,16 @@ function Navbar() {
             variants={menuVariants}
           >
             <div className="pt-2 pb-3 space-y-1">
-              {["Home", "Services", "Pricing", "About", "Contact"].map((item, i) => (
-                <motion.a
+              {["Home", "Services", "Pricing", "Team", "FAQ"].map((item, i) => (
+                <motion.button
                   key={item}
-                  href={`/${item.toLowerCase()}`}
-                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50"
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50"
                   variants={itemVariants}
                   custom={i}
                 >
                   {item}
-                </motion.a>
+                </motion.button>
               ))}
               <motion.div
                 className="px-3 py-2"
@@ -123,7 +131,7 @@ function Navbar() {
                 custom={5}
               >
                 <a
-                  href="/login"
+                  href="https://basicloginauth.vercel.app/"
                   className="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
                 >
                   Login
