@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 function Team() {
   const teamMembers = [
     {
-      name: "Vanshita",
+      name: "Damanpreet Kaur",
       role: "Frontend Developer",
       bio: "Passionate about creating beautiful and user-friendly interfaces. Specializes in React and modern web technologies.",
       social: {
@@ -14,7 +14,7 @@ function Team() {
       }
     },
     {
-      name: "Damanpreet",
+      name: "Vanshita Taneja",
       role: "Backend Developer",
       bio: "Expert in backend development and database management. Focuses on creating scalable and efficient solutions.",
       social: {
