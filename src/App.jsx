@@ -8,27 +8,33 @@ import Team from './pages/components/Home/Team'
 import Footer from './pages/components/Home/Footer'
 
 function App() {
-  return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <div id="home">
-        <Hero />
-      </div>
-      <div id="services">
-        <Services />
-      </div>
-      <div id="pricing">
-        <Pricing />
-      </div>
-      <div id="team">
-        <Team />
-      </div>
-      <div id="faq">
-        <FAQ />
-      </div>
-      <Footer />
-    </div>
-  )
+	return (
+		<div>
+			<Navbar />
+
+			<div id="home">
+				<Hero />
+			</div>
+
+			<div id="services">
+				<Services />
+			</div>
+
+			<div id="team">
+				<Team />
+			</div>
+
+			<div id="pricing">
+				<Pricing />
+			</div>
+
+			<div id="faq">
+				<FAQ />
+			</div>
+
+			<Footer />
+		</div>
+	)
 }
 
 export default App

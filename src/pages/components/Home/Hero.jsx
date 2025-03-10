@@ -1,6 +1,13 @@
 import React from 'react';
 
 function Hero() {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-white">
       {/* Background Pattern */}
@@ -26,12 +33,12 @@ function Hero() {
           >
             Get Started
           </a>
-          <a
-            href="/learn-more"
+          <button
+            onClick={() => scrollToSection('faq')}
             className="rounded-md bg-white px-8 py-3 text-base font-semibold text-blue-600 shadow-sm ring-1 ring-inset ring-blue-300 hover:bg-blue-50 transition-all duration-300"
           >
             Learn More
-          </a>
+          </button>
         </div>
       </div>
     </div>
